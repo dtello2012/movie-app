@@ -20,22 +20,26 @@
 				</h1>
 				<p class="lead">Your Movie Resource for Movie Data.</p>
 			</div>
-			<div ng-controller="SearchController">
-				<form class="form-inline-lg" ng-submit="search()">
-					<div class="input-group">
-						<input type="text"
-						       class="form-control"
-						       placeholder="Film Title"
-						       ng-model="query"
-						       ng-keyup="keyup()"
-						       ng-keydown="keydown()"/>
+			<div class="row">
+				<div class="col-xs-12 col-sm-6 col-sm-offset-6">
+					<div ng-controller="SearchController">
+						<form class="form-inline-lg" ng-submit="search()">
+							<div class="input-group">
+								<input type="text"
+								       class="form-control"
+								       placeholder="Film Title"
+								       ng-model="query"
+								       ng-keyup="keyup()"
+								       ng-keydown="keydown()"/>
 						<span class="input-group-btn">
 							<button class="btn btn-primary"
 							        type="button"
 							        ng-click="search()">Go!</button>
 						</span>
+							</div>
+						</form>
 					</div>
-				</form>
+				</div>
 			</div>
 		</div>
 	</header>
@@ -46,7 +50,7 @@
 	<footer class="footer">
 		<div class="container">
 			<p>
-				from @davidrtello.com | movie data from http://www.omdbapi.com
+				from @dtello2012 www.davidrtello.com | movie data from http://www.omdbapi.com
 			</p>
 		</div>
 	</footer>
@@ -56,13 +60,17 @@
 	-->
 	<script src="https://code.angularjs.org/1.5.0/angular.js"></script>
 	<script src="https://code.angularjs.org/1.5.0/angular-route.min.js"></script>
+	<script src="https://code.angularjs.org/1.5.0/angular-resource.min.js"></script>
+
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.2.4/ui-bootstrap-tpls.js"></script>
 	<!--
 		App js
 	-->
-	<script src="movie-app/app.js"></script>
-	<script src="omdb/service.js"></script>
-	<script src="movie-app/search.controller.js"></script>
-	<script src="movie-app/results.controller.js"></script>
+	<script type="text/javascript" src="omdb/service.js"></script>
+	<script type="text/javascript" src="movie-core/service.js"></script>
+	<script type="text/javascript" src="movie-app/app.js"></script>
+	<script type="text/javascript" src="movie-app/search.controller.js"></script>
+	<script type="text/javascript" src="movie-app/results.controller.js"></script>
+	<script type="text/javascript" src="movie-app/home.controller.js"></script>
 </body>
 </html>
