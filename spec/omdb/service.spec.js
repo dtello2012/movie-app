@@ -52,6 +52,7 @@ describe('ombd service', function() {
 				.then(function(data) {
 					response = data;
 				});
+
 		$httpBackend.flush();
 
 		expect(response).toEqual(movieData);

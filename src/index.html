@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html ng-app="movieApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Movie App</title>
+	<link rel="stylesheet"
+	      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+	      integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+	      crossorigin="anonymous">
+	<style type="text/css">
+		.container { max-width: 900px;}
+	</style>
+</head>
+<body>
+	<header class="header">
+		<div class="container">
+			<div class="page-header">
+				<h1>
+					<a href="#/">MovieApp</a>
+				</h1>
+				<p class="lead">Your Movie Resource for Movie Data.</p>
+			</div>
+			<div ng-controller="SearchController">
+				<form class="form-inline-lg" ng-submit="search()">
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="Film Title" ng-model="query">
+						<span class="input-group-btn">
+							<button class="btn btn-primary"  type="button" ng-click="search()">Go!</button>
+						</span>
+					</div>
+				</form>
+			</div>
+		</div>
+	</header>
+	<div class="container">
+		<div ng-view=""></div>
+	</div>
+	<br>
+	<footer class="footer">
+		<div class="container">
+			<p>
+				from @davidrtello.com | movie data from http://www.omdbapi.com
+			</p>
+		</div>
+	</footer>
+	
+	<!--
+		vendor js
+	-->
+	<script src="https://code.angularjs.org/1.5.0/angular.js"></script>
+	<script src="https://code.angularjs.org/1.5.0/angular-route.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.2.4/ui-bootstrap-tpls.js"></script>
+	<!--
+		App js
+	-->
+	<script src="movie-app/app.js"></script>
+	<script src="omdb/service.js"></script>
+	<script src="movie-app/search.controller.js"></script>
+	<script src="movie-app/results.controller.js"></script>
+</body>
+</html>

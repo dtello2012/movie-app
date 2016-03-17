@@ -1,7 +1,7 @@
 
 (function() {
 	"use strict";
-	angular.module('movieApp', [])
+	angular.module('movieApp')
 			.controller('SearchController', ['$scope', '$location', SearchController]);
 	function SearchController ($scope, $location) {
 		$scope.search = function() {

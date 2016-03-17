@@ -1,0 +1,22 @@
+<div><br>
+	<ol class="breadcrumb">
+		<li><a href="#/">Home</a></li>
+		<li>Results</li>
+	</ol>
+	<uib-accordion>
+		<uib-accordion-group ng-repeat="result in results" is open="result.open">
+			<uib-accordion-heading>
+				{{result.Title}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-up': result.open, 'glyphicon-chevron-right': !result.open}"></i>
+			</uib-accordion-heading>
+			<div class="row">
+				<div class="col-xs-4" ng-if="result.Poster !== 'N/A'">
+					<img ng-src="{{result.Poster}}" alt="{{result.Title}}" class="img-responsive"></div>
+				<div class="col-xs-8">
+					<h2>
+						{{result.Title}}
+					</h2>
+				</div>
+			</div>
+		</uib-accordion-group>
+	</uib-accordion>
+</div>
