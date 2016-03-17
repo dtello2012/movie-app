@@ -16,16 +16,23 @@
 		<div class="container">
 			<div class="page-header">
 				<h1>
-					<a href="#/">MovieApp</a>
+					<a href="#/"><i class="glyphicon glyphicon-film"></i>MovieApp</a>
 				</h1>
 				<p class="lead">Your Movie Resource for Movie Data.</p>
 			</div>
 			<div ng-controller="SearchController">
 				<form class="form-inline-lg" ng-submit="search()">
 					<div class="input-group">
-						<input type="text" class="form-control" placeholder="Film Title" ng-model="query">
+						<input type="text"
+						       class="form-control"
+						       placeholder="Film Title"
+						       ng-model="query"
+						       ng-keyup="keyup()"
+						       ng-keydown="keydown()"/>
 						<span class="input-group-btn">
-							<button class="btn btn-primary"  type="button" ng-click="search()">Go!</button>
+							<button class="btn btn-primary"
+							        type="button"
+							        ng-click="search()">Go!</button>
 						</span>
 					</div>
 				</form>
