@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html ng-app="movieApp">
+<html data-ng-app="movieApp">
 <head>
 	<meta charset="UTF-8">
 	<title>Movie App</title>
 	<link rel="stylesheet"
 	      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
-	      integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+	      data-integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
 	      crossorigin="anonymous">
 	<style type="text/css">
 		.container { max-width: 900px;}
@@ -23,18 +23,18 @@
 			<div class="row">
 				<div class="col-xs-12 col-sm-6 col-sm-offset-6">
 					<div ng-controller="SearchController">
-						<form class="form-inline-lg" ng-submit="search()">
+						<form class="form-inline-lg" data-ng-submit="search()">
 							<div class="input-group">
 								<input type="text"
 								       class="form-control"
 								       placeholder="Film Title"
 								       ng-model="query"
-								       ng-keyup="keyup()"
-								       ng-keydown="keydown()"/>
+								       data-ng-keyup="keyup()"
+								       data-ng-keydown="keydown()"/>
 						<span class="input-group-btn">
 							<button class="btn btn-primary"
 							        type="button"
-							        ng-click="search()">Go!</button>
+							        data-ng-click="search()">Go!</button>
 						</span>
 							</div>
 						</form>
@@ -58,11 +58,11 @@
 	<!--
 		vendor js
 	-->
-	<script src="https://code.angularjs.org/1.5.0/angular.js"></script>
-	<script src="https://code.angularjs.org/1.5.0/angular-route.min.js"></script>
-	<script src="https://code.angularjs.org/1.5.0/angular-resource.min.js"></script>
+	<script src="../lib/angular.min.js"></script>
+	<script src="../lib/angular-route.min.js"></script>
+	<script src="../lib/angular-resource.min.js"></script>
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.2.4/ui-bootstrap-tpls.js"></script>
+	<script src="../lib/ui-bootstrap-tpls.js"></script>
 	<!--
 		App js
 	-->
