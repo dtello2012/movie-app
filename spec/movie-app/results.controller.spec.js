@@ -31,17 +31,24 @@
 		var $scope;
 		var omdbApi;
 		var $location;
+		var $exceptionHandler;
 
 		beforeEach(module('omdb'));
 		beforeEach(module('movieApp'));
 
-		beforeEach(inject(function(_$controller_, _$q_, _$rootScope_, _omdbApi_, _$location_){
+
+		beforeEach(module(function($exceptionHandlerProvider) {
+			$exceptionHandlerProvider.mode('log');
+		}));
+
+		beforeEach(inject(function(_$controller_, _$q_, _$rootScope_, _omdbApi_, _$location_, _$exceptionHandler_){
 			$controller = _$controller_;
 			$scope = {};
 			$q = _$q_;
 			$rootScope = _$rootScope_;
 			omdbApi = _omdbApi_;
 			$location = _$location_;
+			$exceptionHandler =_$exceptionHandler_
 		}));
 
 		it('should load search results', function() {
@@ -62,13 +69,26 @@
 		it('should result status to error', function() {
 			spyOn(omdbApi, 'search').and.callFake(function() {
 				var deferred = $q.defer();
-				deferred.reject();
+				deferred.reject('Something went wrong!');
 				return deferred.promise;
 			});
 			$location.search('q', 'Star Wars');
-			$controller('ResultsController', {$scope: $scope});
-			$rootScope.$apply();
-			expect($scope.errorMessage ).toBe('Something went wrong');
+
+			//first option
+			//$controller('ResultsController', {$scope: $scope});
+			//$rootScope.$apply();
+			//expect($scope.errorMessage ).toBe('Something went wrong');
+
+			//second option
+			//expect(function(){
+				$controller('ResultsController', {$scope: $scope});
+				$rootScope.$apply();
+			//} ).toThrow('Something went wrong');
+
+
+			//third option
+			console.log($exceptionHandler.errors);
+			expect($exceptionHandler.errors ).toEqual(['Something went wrong!'])
 		});
 
 	});

@@ -1,7 +1,6 @@
 (function () {
 	"use strict";
 	describe('Movie Result Directive', function() {
-		var $scope;
 
 		var result = {
 			Poster: 'http://localhost/image.jpg',
@@ -22,31 +21,30 @@
 			'<p class="ng-binding">A young boy from Tatooine sets out on an adventure with an old Jedi named Obi-Wan Kenobi as his mentor to save Princess Leia from the ruthless Darth Vader and Destroy the Death Star built by the Empire which has the power to destroy the entire galaxy.</p>',
 			'<p class="ng-binding"><strong>Director:</strong> George Lucas</p>',
 			'<p class="ng-binding"><strong>Actors:</strong> Mark Hamill, Harrison Ford, Carrie Fisher, Peter Cushing</p>',
-			'<p class="ng-binding"><strong>Released:</strong> 25 May 1977</p>',
+			'<p class="ng-binding"><strong>Released:</strong> 25 May 1977 </p>',
 			'<p class="ng-binding"><strong>Genre:</strong> Action, Adventure, Fantasy</p>',
 			'</div>'
-		].join('');
+		].join('')
+
 		var $compile;
 		var $rootScope;
 
 		beforeEach(module('movieApp'));
 
-		beforeEach(inject(function(_$compile_, _$rootScope_){
+		beforeEach(inject(function(_$compile_, _$rootScope_) {
 			$compile = _$compile_;
 			$rootScope = _$rootScope_;
 		}));
 
-	    it('should output movie result to expected HTML format', function(){
-				//var scope = {};
-				//scope.result = result;
-				$rootScope.result = result;
-				var element;
-				element = $compile('<movie-result result="result"></movie-result>' )($rootScope);
-				$rootScope.$digest();
-				expect(element.html()).toBe(expectedHtml);
-				expect($rootScope.$countChildScopes() ).toBe(1);
-				expect($rootScope.$countWatchers() ).toBe(9);
-	    });
+		it('should output movie result to expected HTML format', function() {
+			$rootScope.result = result;
+			var element = $compile('<movie-result result="result"></movie-result>')($rootScope);
+			$rootScope.$digest();
+			expect(element.html()).toBe(expectedHtml);
+			expect($rootScope.$countChildScopes()).toBe(1);
+			expect($rootScope.$countWatchers()).toBe(9);
+		});
+
 	});
 
 }());

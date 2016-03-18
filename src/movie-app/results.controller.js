@@ -1,9 +1,9 @@
 (function () {
 	"use strict";
 	angular.module('movieApp')
-			.controller('ResultsController', ['$scope', '$location', 'omdbApi',
+			.controller('ResultsController', ['$scope', '$location', '$exceptionHandler', 'omdbApi',
 
-			function ResultController ($scope, $location, omdbApi) {
+			function ResultController ($scope, $location, $exceptionHandler, omdbApi) {
 
 				var query = $location.search().q;
 				//$scope.results = [];
@@ -15,8 +15,10 @@
 						.then(function(data) {
 							$scope.results = data.Search;
 						})
-						.catch(function() {
-							$scope.errorMessage= 'Something went wrong';
+						.catch(function(e) {
+							//$scope.errorMessage= 'Something went wrong';
+							//throw 'Something went wrong';
+							$exceptionHandler(e);
 						});
 				$scope.expand = function expand(index, id) {
 					omdbApi.find(id)
