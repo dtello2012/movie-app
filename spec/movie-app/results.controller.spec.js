@@ -32,6 +32,7 @@
 		var omdbApi;
 		var $location;
 		var $exceptionHandler;
+		var $log;
 
 		beforeEach(module('omdb'));
 		beforeEach(module('movieApp'));
@@ -41,11 +42,16 @@
 			$exceptionHandlerProvider.mode('log');
 		}));
 
-		beforeEach(inject(function(_$controller_, _$q_, _$rootScope_, _omdbApi_, _$location_, _$exceptionHandler_){
+		beforeEach(module(function($logProvider) {
+			$logProvider.debugEnabled(true);
+		}));
+
+		beforeEach(inject(function(_$controller_, _$q_, _$rootScope_, _omdbApi_, _$location_, _$exceptionHandler_, _$log_){
 			$controller = _$controller_;
 			$scope = {};
 			$q = _$q_;
 			$rootScope = _$rootScope_;
+			$log = _$log_;
 			omdbApi = _omdbApi_;
 			$location = _$location_;
 			$exceptionHandler =_$exceptionHandler_
@@ -65,6 +71,8 @@
 			expect($scope.results[1].Title ).toBe(results.Search[1].Title);
 			expect($scope.results[2].Title ).toBe(results.Search[2].Title);
 			expect(omdbApi.search ).toHaveBeenCalledWith('Star Wars');
+			expect($log.debug.logs[0] ).toEqual(['Controller loaded with query:','Star Wars']);
+			expect($log.debug.logs[1] ).toEqual(['Data returned with query:','Star Wars', results]);
 		});
 		it('should result status to error', function() {
 			spyOn(omdbApi, 'search').and.callFake(function() {

@@ -1,11 +1,12 @@
 (function () {
 	"use strict";
 	angular.module('movieApp')
-			.controller('ResultsController', ['$scope', '$location', '$exceptionHandler', 'omdbApi',
+			.controller('ResultsController', ['$scope', '$location', '$exceptionHandler', 'omdbApi', '$log',
 
-			function ResultController ($scope, $location, $exceptionHandler, omdbApi) {
+			function ResultController ($scope, $location, $exceptionHandler, omdbApi, $log) {
 
 				var query = $location.search().q;
+				$log.debug('Controller loaded with query:', query);
 				//$scope.results = [];
 				//
 				//$scope.results.push({data: {Title: 'Star Wars: Episode IV - A New Hope'}});
@@ -13,6 +14,7 @@
 				//$scope.results.push({data: {Title: 'Star Wars: Episode VI - Return of the Jedi'}});
 				omdbApi.search(query)
 						.then(function(data) {
+							$log.debug('Data returned with query:', query, data);
 							$scope.results = data.Search;
 						})
 						.catch(function(e) {
