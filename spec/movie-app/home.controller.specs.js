@@ -30,10 +30,11 @@
 		}));
 
 		beforeEach(inject(function(_$q_, _PopularMovies_) {
-			spyOn(_PopularMovies_, 'get').and.callFake(function() {
-				var deferred = _$q_.defer();
-				deferred.resolve(['tt0076759', 'tt0080684', 'tt0086190']);
-				return deferred.promise;
+			spyOn(_PopularMovies_, 'query').and.callFake(function(cb) {
+				//var deferred = _$q_.defer();
+				//deferred.resolve(['tt0076759', 'tt0080684', 'tt0086190']);
+				cb(['tt0076759', 'tt0080684', 'tt0086190']);
+				//return deferred.promise;
 			});
 		}));
 

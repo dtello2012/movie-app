@@ -1,30 +1,31 @@
 (function () {
 	"use strict";
 	angular.module('movieApp')
-			.controller('HomeController', ['$scope', '$interval', 'omdbApi', 'PopularMovies', HomeController]);
-	function HomeController ($scope, $interval, omdbApi, PopularMovies) {
+			.controller('HomeController', ['$scope', '$interval', 'omdbApi', 'PopularMovies', '$log', HomeController]);
+	function HomeController ($scope, $interval, omdbApi, PopularMovies, $log) {
 		var results = [];
 		var idx = 0;
 		var findMovie = function(id) {
 			omdbApi.find(id)
 					.then(function(data) {
 						$scope.result = data;
+					})
+					.catch(function(e) {
+						$exceptionHandler(e);
 					});
 		};
 
-		$scope.result = {};
+		PopularMovies.query(function(data) {
+			results = data;
+			//$log.info(results);
+			//$log.info(results);
 
-		// Get PopularMovies list
-		var data = ['tt0076759', 'tt0080684', 'tt0086190'];
-		//PopularMovies.get()
-		//	.then(function(data) {
-		results = data;
-		findMovie(results[0]);
-		$interval(function() {
-			++idx;
-			findMovie(results[idx % results.length]);
-		}, 5000);
+				findMovie(results[0]);
+				$interval(function() {
+					++idx;
+					findMovie(results[idx % results.length]);
+				}, 5000);
+		});
 
-		//});
 	}
 }());
